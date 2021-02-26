@@ -1,0 +1,98 @@
+# DivineEngine Quantumult 配置示例
+
+[general]
+resource_parser_url=https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js
+
+;geo_location_checker=http://www.example.com/json/, https://www.example.com/script.js
+
+server_check_url=http://www.gstatic.com/generate_204
+
+dns_exclusion_list=*.cmpassport.com, *.jegotrip.com.cn, *.icitymobile.mobi, id6.me, *.pingan.com.cn, *.cmbchina.com
+
+excluded_routes=239.255.255.250/32
+
+
+[dns]
+no-ipv6
+
+server=119.29.29.29
+# > Alibaba Public DNS
+# server=223.5.5.5
+
+# 本地 DNS 映射
+address=/mtalk.google.com/108.177.125.188
+# Google Dl
+server=/dl.google.com/119.29.29.29
+server=/dl.l.google.com/119.29.29.29
+
+[policy]
+
+
+[server_remote]
+#
+
+
+[filter_remote]
+#
+# 参数「tag」、「force-policy」和「enabled」是可选的。
+# 当有强制策略时，远程资源的过滤器中的策略将被忽略，并使用强制策略。
+#
+
+# Unbreak 后续规则修正
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Unbreak.list, tag=🔂Unbreak, update-interval=86400, enabled=true
+
+# Advertising 广告
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Advertising.list, tag=🛡Advertising, update-interval=86400, force-policy=Guard, enabled=true
+
+# Privacy 隐私
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Privacy.list, tag=🛡️Privacy, update-interval=86400, force-policy=Guard, enabled=false
+
+# Hijacking 运营商劫持或恶意网站
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Hijacking.list, tag=🛡️Hijacking, update-interval=86400, force-policy=Guard, enabled=true
+
+# Streaming 国际流媒体服务
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/Streaming.list, tag=🎞Streaming, update-interval=86400, enabled=true
+
+# StreamingSE 中国流媒体服务(面向海外版本)
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/StreamingSE.list, tag=🎞StreamingSE, update-interval=86400, enabled=true
+
+# Global 全球加速
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Global.list, tag=🇺🇳Global, update-interval=86400, enabled=true
+
+# China 中国直连
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/China.list, tag=🇨🇳China, update-interval=86400, enabled=true
+
+# 推荐使用来自 ipipdotnet 的 ChinaIP 以解决数据不准确，以及因规则类型优先级(GEOIP > IP-CIDR)导致的问题，使用 ChinaIP.list 时需禁用「GEOIP,CN」规则
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/ChinaIP.list, tag=🇨🇳ChinaIP(与「geoip, cn, direct」二选一), update-interval=86400, enabled=true
+
+[rewrite_remote]
+
+[server_local]
+
+
+[filter_local]
+# Local Area Network 局域网
+host-suffix, local, direct
+ip-cidr, 192.168.0.0/16, direct
+ip-cidr, 10.0.0.0/8, direct
+ip-cidr, 172.16.0.0/12, direct
+ip-cidr, 127.0.0.0/8, direct
+ip-cidr, 100.64.0.0/10, direct
+ip-cidr, 224.0.0.0/4, direct
+ip6-cidr, fe80::/10, direct
+
+# GeoIP China(若启用，则禁用 ChinaIP.list)
+-geoip, cn, direct
+
+final, Final
+
+[rewrite_local]
+
+
+[task_local]
+
+
+[http_backend]
+
+
+[mitm]
