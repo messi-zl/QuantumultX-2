@@ -94,7 +94,7 @@ ip6-cidr, fe80::/10, direct
 # GeoIP China(若启用，则禁用 ChinaIP.list)
 ;geoip, cn, direct
 
-final, Final
+final, 漏网之鱼
 
 [rewrite_local]
 
