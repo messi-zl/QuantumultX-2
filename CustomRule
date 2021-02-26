@@ -3,7 +3,7 @@
 [general]
 resource_parser_url=https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js
 
-;geo_location_checker=http://www.example.com/json/, https://www.example.com/script.js
+geo_location_checker=http://ip-api.com/json/?lang=zh-CN, https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/IP_API.js
 
 server_check_url=http://www.gstatic.com/generate_204
 
@@ -26,44 +26,54 @@ server=/dl.google.com/119.29.29.29
 server=/dl.l.google.com/119.29.29.29
 
 [policy]
-
+static=IPLC, server-tag-regex=(手游|游戏|专线|(?i)IPLC|IEPL|game), img-url=https://raw.githubusercontent.com/Orz-3/mini/master/IPLC.png
+static=香港, server-tag-regex=(?=.*(香港|HK|(?i)Hong))^((?!(专线|手游|游戏|(?i)IPLC|IEPL|game)).)*$, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/HK.png
+static=Instagram, 香港, IPLC, proxy, img-url=https://raw.githubusercontent.com/messi-zl/mini/master/Instagram.png
+static=YouTube, 台湾, 香港, proxy, img-url=https://raw.githubusercontent.com/messi-zl/mini/master/YouTube.png
+static=Netflix, 新加坡, proxy, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Netflix.png
+static=Speedtest, proxy, direct, img-url=https://raw.githubusercontent.com/messi-zl/Qure/master/IconSet/Speedtest.png
+static=Spotify, 香港, proxy, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Spotify.png
+static=Telegram, proxy, direct, 新加坡, IPLC, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Telegram.png
+static=苹果服务, direct, 美国, proxy, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Apple.png
+static=国外网站, proxy, 美国, 新加坡, 日本, 韩国, 香港, 台湾, 其他, IPLC, direct, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Global.png
+static=港台番剧, direct, 香港, 台湾, proxy, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/StreamingSE.png
+static=国际媒体, proxy, 美国, 新加坡, 日本, 韩国, 香港, 台湾, 其他, direct, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Streaming.png
+static=漏网之鱼, proxy, direct, 美国, 新加坡, 日本, 韩国, 香港, 台湾, 其他, IPLC, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Final.png
+static=台湾, server-tag-regex=(?=.*(台湾|台灣|TW|(?i)Taiwan))^((?!(专线|手游|游戏|(?i)IPLC|IEPL|game)).)*$, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/TW.png
+static=新加坡, server-tag-regex=(?=.*(新加坡|狮城|SG|(?i)Singapore))^((?!(专线|手游|游戏|(?i)IPLC|IEPL|game)).)*$, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/SG.png
+static=美国, server-tag-regex=(?=.*(美国|美國|US|(?i)States|American))^((?!(专线|手游|游戏|(?i)IPLC|IEPL|game)).)*$, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/US.png
+static=日本, server-tag-regex=(?=.*(日本|JP|(?i)Japan))^((?!(专线|手游|游戏|(?i)IPLC|IEPL|game)).)*$, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/JP.png
+static=韩国, server-tag-regex=(?=.*(韩国|韓國|南朝鲜|KR|(?i)Korean))^((?!(专线|手游|游戏|(?i)IPLC|IEPL|game)).)*$, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/KR.png
+static=其他, server-tag-regex=^((?!(专线|手游|游戏|香港|台湾|日本|新加坡|美国|韩国|狮城|南朝鲜|US|SG|JP|KR|HK|TW|台灣|美國|韓國|獅城|账号|试用|流量|电报|网址|最新|域名|剩余|(?i)IPLC|IEPL|game|States|American|Singapore|Japan|Korea|Hong|Taiwan|data|date|website)).)*$, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/UN.png
 
 [server_remote]
 #
 
 
 [filter_remote]
-#
-# 参数「tag」、「force-policy」和「enabled」是可选的。
-# 当有强制策略时，远程资源的过滤器中的策略将被忽略，并使用强制策略。
-#
-
 # Unbreak 后续规则修正
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Unbreak.list, tag=🔂Unbreak, update-interval=86400, enabled=true
-
-# Advertising 广告
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Advertising.list, tag=🛡Advertising, update-interval=86400, force-policy=Guard, enabled=true
-
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Unbreak.list, tag=规则修正, update-interval=86400, enabled=true
 # Privacy 隐私
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Privacy.list, tag=🛡️Privacy, update-interval=86400, force-policy=Guard, enabled=false
-
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Privacy.list, tag=隐私保护, update-interval=86400, force-policy=reject, enabled=true
 # Hijacking 运营商劫持或恶意网站
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Hijacking.list, tag=🛡️Hijacking, update-interval=86400, force-policy=Guard, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Hijacking.list, tag=运营劫持, update-interval=86400, force-policy=reject, enabled=true
 
-# Streaming 国际流媒体服务
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/Streaming.list, tag=🎞Streaming, update-interval=86400, enabled=true
+https://raw.githubusercontent.com/messi-zl/ios_rule_script/release/rule/QuantumultX/YouTube/YouTube.list, tag=YouTube, force-policy=YouTube, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/messi-zl/ios_rule_script/release/rule/QuantumultX/Facebook/Facebook.list, tag=Facebook, force-policy=Instagram, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/messi-zl/ios_rule_script/release/rule/QuantumultX/Speedtest/Speedtest.list, tag=Speedtest, force-policy=Speedtest, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/messi-zl/ios_rule_script/release/rule/QuantumultX/Telegram/Telegram.list, tag=电报代理, force-policy=Telegram, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/messi-zl/ios_rule_script/release/rule/QuantumultX/Spotify/Spotify.list, tag=Spotify, force-policy=Spotify, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/messi-zl/ios_rule_script/release/rule/QuantumultX/Netflix/Netflix.list, tag=Netflix, force-policy=Netflix, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/Streaming.list, tag=国际媒体, force-policy=国际媒体, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/StreamingSE.list, tag=港台番剧, force-policy=港台番剧, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Global.list, tag=国外网站, force-policy=国外网站, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Apple/AppStoreConnect.list, tag=苹果服务, force-policy=苹果服务, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Apple/AppStore.list, tag=苹果服务, force-policy=苹果服务, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/Apple/TestFlight.list, tag=苹果服务, force-policy=苹果服务, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/messi-zl/ios_rule_script/release/rule/QuantumultX/iCloud/iCloud.list, tag=苹果服务, force-policy=苹果服务, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/China.list, tag=China, update-interval=86400, enabled=true
+https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/ChinaIP.list, tag=🇨🇳ChinaIP, update-interval=86400, enabled=true
 
-# StreamingSE 中国流媒体服务(面向海外版本)
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/StreamingSE.list, tag=🎞StreamingSE, update-interval=86400, enabled=true
-
-# Global 全球加速
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Global.list, tag=🇺🇳Global, update-interval=86400, enabled=true
-
-# China 中国直连
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/China.list, tag=🇨🇳China, update-interval=86400, enabled=true
-
-# 推荐使用来自 ipipdotnet 的 ChinaIP 以解决数据不准确，以及因规则类型优先级(GEOIP > IP-CIDR)导致的问题，使用 ChinaIP.list 时需禁用「GEOIP,CN」规则
-https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Extra/ChinaIP.list, tag=🇨🇳ChinaIP(与「geoip, cn, direct」二选一), update-interval=86400, enabled=true
 
 [rewrite_remote]
 
@@ -82,7 +92,7 @@ ip-cidr, 224.0.0.0/4, direct
 ip6-cidr, fe80::/10, direct
 
 # GeoIP China(若启用，则禁用 ChinaIP.list)
--geoip, cn, direct
+;geoip, cn, direct
 
 final, Final
 
